@@ -12,11 +12,11 @@ import (
 
 func Example() {
 	x := strparse.Expr(`1 + 2`).(*ast.BinaryExpr)
-	y := astcopy.BinaryExpr(x)
+	y := astcopy.BinaryExpr(x, nil)
 	fmt.Println(astequal.Expr(x, y)) // => true
 
 	// Now modify x and make sure y is not modified.
-	z := astcopy.BinaryExpr(y)
+	z := astcopy.BinaryExpr(y, nil)
 	x.Op = token.SUB
 	fmt.Println(astequal.Expr(y, z)) // => true
 	fmt.Println(astequal.Expr(x, y)) // => false
