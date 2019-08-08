@@ -5,9 +5,9 @@ import (
 	"go/ast"
 	"go/token"
 
-	"github.com/go-toolsmith/astcopy"
 	"github.com/go-toolsmith/astequal"
 	"github.com/go-toolsmith/strparse"
+	"github.com/vvakame/astcopy"
 )
 
 func Example() {

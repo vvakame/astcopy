@@ -1,4 +1,4 @@
-module github.com/go-toolsmith/astcopy
+module github.com/vvakame/astcopy
 
 require (
 	github.com/go-toolsmith/astequal v1.0.0
