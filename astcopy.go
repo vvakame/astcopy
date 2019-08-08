@@ -92,7 +92,11 @@ func BadExpr(x *ast.BadExpr, nMap CopyNodeMap) *ast.BadExpr {
 	}
 	cp := *x
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -105,7 +109,11 @@ func Ident(x *ast.Ident, nMap CopyNodeMap) *ast.Ident {
 	}
 	cp := *x
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -132,7 +140,11 @@ func Ellipsis(x *ast.Ellipsis, nMap CopyNodeMap) *ast.Ellipsis {
 	cp := *x
 	cp.Elt = copyExpr(x.Elt, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -145,7 +157,11 @@ func BasicLit(x *ast.BasicLit, nMap CopyNodeMap) *ast.BasicLit {
 	}
 	cp := *x
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -160,7 +176,11 @@ func FuncLit(x *ast.FuncLit, nMap CopyNodeMap) *ast.FuncLit {
 	cp.Type = FuncType(x.Type, nMap)
 	cp.Body = BlockStmt(x.Body, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -175,7 +195,11 @@ func CompositeLit(x *ast.CompositeLit, nMap CopyNodeMap) *ast.CompositeLit {
 	cp.Type = copyExpr(x.Type, nMap)
 	cp.Elts = ExprList(x.Elts, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -189,7 +213,11 @@ func ParenExpr(x *ast.ParenExpr, nMap CopyNodeMap) *ast.ParenExpr {
 	cp := *x
 	cp.X = copyExpr(x.X, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -204,7 +232,11 @@ func SelectorExpr(x *ast.SelectorExpr, nMap CopyNodeMap) *ast.SelectorExpr {
 	cp.X = copyExpr(x.X, nMap)
 	cp.Sel = Ident(x.Sel, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -219,7 +251,11 @@ func IndexExpr(x *ast.IndexExpr, nMap CopyNodeMap) *ast.IndexExpr {
 	cp.X = copyExpr(x.X, nMap)
 	cp.Index = copyExpr(x.Index, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -236,7 +272,11 @@ func SliceExpr(x *ast.SliceExpr, nMap CopyNodeMap) *ast.SliceExpr {
 	cp.High = copyExpr(x.High, nMap)
 	cp.Max = copyExpr(x.Max, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -251,7 +291,11 @@ func TypeAssertExpr(x *ast.TypeAssertExpr, nMap CopyNodeMap) *ast.TypeAssertExpr
 	cp.X = copyExpr(x.X, nMap)
 	cp.Type = copyExpr(x.Type, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -266,7 +310,11 @@ func CallExpr(x *ast.CallExpr, nMap CopyNodeMap) *ast.CallExpr {
 	cp.Fun = copyExpr(x.Fun, nMap)
 	cp.Args = ExprList(x.Args, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -280,7 +328,11 @@ func StarExpr(x *ast.StarExpr, nMap CopyNodeMap) *ast.StarExpr {
 	cp := *x
 	cp.X = copyExpr(x.X, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -294,7 +346,11 @@ func UnaryExpr(x *ast.UnaryExpr, nMap CopyNodeMap) *ast.UnaryExpr {
 	cp := *x
 	cp.X = copyExpr(x.X, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -309,7 +365,11 @@ func BinaryExpr(x *ast.BinaryExpr, nMap CopyNodeMap) *ast.BinaryExpr {
 	cp.X = copyExpr(x.X, nMap)
 	cp.Y = copyExpr(x.Y, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -324,7 +384,11 @@ func KeyValueExpr(x *ast.KeyValueExpr, nMap CopyNodeMap) *ast.KeyValueExpr {
 	cp.Key = copyExpr(x.Key, nMap)
 	cp.Value = copyExpr(x.Value, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -339,7 +403,11 @@ func ArrayType(x *ast.ArrayType, nMap CopyNodeMap) *ast.ArrayType {
 	cp.Len = copyExpr(x.Len, nMap)
 	cp.Elt = copyExpr(x.Elt, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -353,7 +421,11 @@ func StructType(x *ast.StructType, nMap CopyNodeMap) *ast.StructType {
 	cp := *x
 	cp.Fields = FieldList(x.Fields, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -371,7 +443,11 @@ func Field(x *ast.Field, nMap CopyNodeMap) *ast.Field {
 	cp.Doc = CommentGroup(x.Doc, nMap)
 	cp.Comment = CommentGroup(x.Comment, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -390,7 +466,11 @@ func FieldList(x *ast.FieldList, nMap CopyNodeMap) *ast.FieldList {
 		}
 	}
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -405,7 +485,11 @@ func FuncType(x *ast.FuncType, nMap CopyNodeMap) *ast.FuncType {
 	cp.Params = FieldList(x.Params, nMap)
 	cp.Results = FieldList(x.Results, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -419,7 +503,11 @@ func InterfaceType(x *ast.InterfaceType, nMap CopyNodeMap) *ast.InterfaceType {
 	cp := *x
 	cp.Methods = FieldList(x.Methods, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -434,7 +522,11 @@ func MapType(x *ast.MapType, nMap CopyNodeMap) *ast.MapType {
 	cp.Key = copyExpr(x.Key, nMap)
 	cp.Value = copyExpr(x.Value, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -448,7 +540,11 @@ func ChanType(x *ast.ChanType, nMap CopyNodeMap) *ast.ChanType {
 	cp := *x
 	cp.Value = copyExpr(x.Value, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -462,7 +558,11 @@ func BlockStmt(x *ast.BlockStmt, nMap CopyNodeMap) *ast.BlockStmt {
 	cp := *x
 	cp.List = StmtList(x.List, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -479,7 +579,11 @@ func ImportSpec(x *ast.ImportSpec, nMap CopyNodeMap) *ast.ImportSpec {
 	cp.Doc = CommentGroup(x.Doc, nMap)
 	cp.Comment = CommentGroup(x.Comment, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -497,7 +601,11 @@ func ValueSpec(x *ast.ValueSpec, nMap CopyNodeMap) *ast.ValueSpec {
 	cp.Doc = CommentGroup(x.Doc, nMap)
 	cp.Comment = CommentGroup(x.Comment, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -514,7 +622,11 @@ func TypeSpec(x *ast.TypeSpec, nMap CopyNodeMap) *ast.TypeSpec {
 	cp.Doc = CommentGroup(x.Doc, nMap)
 	cp.Comment = CommentGroup(x.Comment, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -559,7 +671,11 @@ func BadStmt(x *ast.BadStmt, nMap CopyNodeMap) *ast.BadStmt {
 	}
 	cp := *x
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -573,7 +689,11 @@ func DeclStmt(x *ast.DeclStmt, nMap CopyNodeMap) *ast.DeclStmt {
 	cp := *x
 	cp.Decl = copyDecl(x.Decl, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -586,7 +706,11 @@ func EmptyStmt(x *ast.EmptyStmt, nMap CopyNodeMap) *ast.EmptyStmt {
 	}
 	cp := *x
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -601,7 +725,11 @@ func LabeledStmt(x *ast.LabeledStmt, nMap CopyNodeMap) *ast.LabeledStmt {
 	cp.Label = Ident(x.Label, nMap)
 	cp.Stmt = copyStmt(x.Stmt, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -615,7 +743,11 @@ func ExprStmt(x *ast.ExprStmt, nMap CopyNodeMap) *ast.ExprStmt {
 	cp := *x
 	cp.X = copyExpr(x.X, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -630,7 +762,11 @@ func SendStmt(x *ast.SendStmt, nMap CopyNodeMap) *ast.SendStmt {
 	cp.Chan = copyExpr(x.Chan, nMap)
 	cp.Value = copyExpr(x.Value, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -644,7 +780,11 @@ func IncDecStmt(x *ast.IncDecStmt, nMap CopyNodeMap) *ast.IncDecStmt {
 	cp := *x
 	cp.X = copyExpr(x.X, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -659,7 +799,11 @@ func AssignStmt(x *ast.AssignStmt, nMap CopyNodeMap) *ast.AssignStmt {
 	cp.Lhs = ExprList(x.Lhs, nMap)
 	cp.Rhs = ExprList(x.Rhs, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -673,7 +817,11 @@ func GoStmt(x *ast.GoStmt, nMap CopyNodeMap) *ast.GoStmt {
 	cp := *x
 	cp.Call = CallExpr(x.Call, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -687,7 +835,11 @@ func DeferStmt(x *ast.DeferStmt, nMap CopyNodeMap) *ast.DeferStmt {
 	cp := *x
 	cp.Call = CallExpr(x.Call, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -701,7 +853,11 @@ func ReturnStmt(x *ast.ReturnStmt, nMap CopyNodeMap) *ast.ReturnStmt {
 	cp := *x
 	cp.Results = ExprList(x.Results, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -715,7 +871,11 @@ func BranchStmt(x *ast.BranchStmt, nMap CopyNodeMap) *ast.BranchStmt {
 	cp := *x
 	cp.Label = Ident(x.Label, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -732,7 +892,11 @@ func IfStmt(x *ast.IfStmt, nMap CopyNodeMap) *ast.IfStmt {
 	cp.Body = BlockStmt(x.Body, nMap)
 	cp.Else = copyStmt(x.Else, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -747,7 +911,11 @@ func CaseClause(x *ast.CaseClause, nMap CopyNodeMap) *ast.CaseClause {
 	cp.List = ExprList(x.List, nMap)
 	cp.Body = StmtList(x.Body, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -763,7 +931,11 @@ func SwitchStmt(x *ast.SwitchStmt, nMap CopyNodeMap) *ast.SwitchStmt {
 	cp.Tag = copyExpr(x.Tag, nMap)
 	cp.Body = BlockStmt(x.Body, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -779,7 +951,11 @@ func TypeSwitchStmt(x *ast.TypeSwitchStmt, nMap CopyNodeMap) *ast.TypeSwitchStmt
 	cp.Assign = copyStmt(x.Assign, nMap)
 	cp.Body = BlockStmt(x.Body, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -794,7 +970,11 @@ func CommClause(x *ast.CommClause, nMap CopyNodeMap) *ast.CommClause {
 	cp.Comm = copyStmt(x.Comm, nMap)
 	cp.Body = StmtList(x.Body, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -808,7 +988,11 @@ func SelectStmt(x *ast.SelectStmt, nMap CopyNodeMap) *ast.SelectStmt {
 	cp := *x
 	cp.Body = BlockStmt(x.Body, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -825,7 +1009,11 @@ func ForStmt(x *ast.ForStmt, nMap CopyNodeMap) *ast.ForStmt {
 	cp.Post = copyStmt(x.Post, nMap)
 	cp.Body = BlockStmt(x.Body, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -842,7 +1030,11 @@ func RangeStmt(x *ast.RangeStmt, nMap CopyNodeMap) *ast.RangeStmt {
 	cp.X = copyExpr(x.X, nMap)
 	cp.Body = BlockStmt(x.Body, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -855,7 +1047,11 @@ func Comment(x *ast.Comment, nMap CopyNodeMap) *ast.Comment {
 	}
 	cp := *x
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -874,7 +1070,11 @@ func CommentGroup(x *ast.CommentGroup, nMap CopyNodeMap) *ast.CommentGroup {
 		}
 	}
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -899,7 +1099,11 @@ func File(x *ast.File, nMap CopyNodeMap) *ast.File {
 		cp.Comments[i] = CommentGroup(x.Comments[i], nMap)
 	}
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -916,7 +1120,11 @@ func Package(x *ast.Package, nMap CopyNodeMap) *ast.Package {
 		cp.Files[filename] = f
 	}
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -929,7 +1137,11 @@ func BadDecl(x *ast.BadDecl, nMap CopyNodeMap) *ast.BadDecl {
 	}
 	cp := *x
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -944,7 +1156,11 @@ func GenDecl(x *ast.GenDecl, nMap CopyNodeMap) *ast.GenDecl {
 	cp.Specs = SpecList(x.Specs, nMap)
 	cp.Doc = CommentGroup(x.Doc, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
@@ -962,7 +1178,11 @@ func FuncDecl(x *ast.FuncDecl, nMap CopyNodeMap) *ast.FuncDecl {
 	cp.Body = BlockStmt(x.Body, nMap)
 	cp.Doc = CommentGroup(x.Doc, nMap)
 	if nMap != nil {
-		nMap[&cp] = x
+		base := nMap[x]
+		if base == nil {
+			base = x
+		}
+		nMap[&cp] = base
 	}
 	return &cp
 }
